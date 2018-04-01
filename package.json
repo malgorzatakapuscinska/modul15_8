@@ -34,5 +34,7 @@
     "parallelshell": "^3.0.2"
   },
   "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1"
   }
 }
