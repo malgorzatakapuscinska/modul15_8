@@ -9,7 +9,7 @@
     "server": "http-server",
     "start": "babel script.js --watch --out-file script-compiled.js",
     "watch:sass": "node-sass --output-style expanded sass/style.scss css/style.css --watch",
-    "build": "babel script.js --watch --out-file-build build.js"
+    "build": "babel script.js --watch --out-file build.js"
   },
   "repository": {
     "type": "git",
