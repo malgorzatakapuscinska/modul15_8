@@ -31,6 +31,8 @@ var App = function (_React$Component) {
 	}, {
 		key: "onSubmit",
 		value: function onSubmit(event) {
+			var _this2 = this;
+
 			event.preventDefault();
 			console.log(event);
 			var searchText = this.state.searchText;
@@ -38,17 +40,10 @@ var App = function (_React$Component) {
 			console.log(this.state);
 			var url = "https://api.github.com/search/users?q=" + searchText;
 			console.log(url);
-		}
-	}, {
-		key: "fetch",
-		value: function fetch(url) {
-			var _this2 = this;
 
-			then(function (response) {
+			fetch(url).then(function (response) {
 				return response.json();
-			});
-
-			then(function (responseJson) {
+			}).then(function (responseJson) {
 				return _this2.setState({ users: responseJson.items });
 			});
 		}

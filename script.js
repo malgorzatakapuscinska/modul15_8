@@ -20,12 +20,11 @@ class App extends React.Component{
 		console.log(this.state);
 		const url = `https://api.github.com/search/users?q=${searchText}`;
 		console.log(url);
-	}
 		
-	fetch(url) {
-			then(response => response.json());
+	fetch(url)
+			.then(response => response.json())
 			
-			then(responseJson => this.setState({users: responseJson.items}));
+			.then(responseJson => this.setState({users: responseJson.items}));
 	}
 	
 	render() {
