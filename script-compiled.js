@@ -1,5 +1,7 @@
 "use strict";
 
+//create App class
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23,18 +25,22 @@ var App = function (_React$Component) {
 		return _this;
 	}
 
+	// onChangeHandle sets searchText state value equal to written by user in input field
+
 	_createClass(App, [{
 		key: "onChangeHandle",
 		value: function onChangeHandle(event) {
 			this.setState({ searchText: event.target.value });
 		}
+
+		// onSubmit event sends request to GitHub API
+
 	}, {
 		key: "onSubmit",
 		value: function onSubmit(event) {
 			var _this2 = this;
 
-			event.preventDefault();
-			console.log(event);
+			event.preventDefault(); //prevents form sending 
 			var searchText = this.state.searchText;
 
 			console.log(this.state);
@@ -44,7 +50,7 @@ var App = function (_React$Component) {
 			fetch(url).then(function (response) {
 				return response.json();
 			}).then(function (responseJson) {
-				return _this2.setState({ users: responseJson.items });
+				_this2.setState({ users: responseJson.items });console.log(_this2.state.users);
 			});
 		}
 	}, {
@@ -53,27 +59,41 @@ var App = function (_React$Component) {
 			var _this3 = this;
 
 			return React.createElement(
-				"div",
+				"section",
 				null,
 				React.createElement(
-					"form",
-					{ onSubmit: function onSubmit(event) {
-							return _this3.onSubmit(event);
-						} },
+					"header",
+					null,
+					React.createElement("img", { src: "./images/GitHub_Mark.png" }),
 					React.createElement(
-						"label",
-						{ htmlFor: "searchText" },
-						"Search by user name"
-					),
-					React.createElement("input", {
-						type: "text",
-						id: "searchText",
-						onChange: function onChange(event) {
-							return _this3.onChangeHandle(event);
-						},
-						value: this.state.searchText })
+						"h1",
+						null,
+						"GitHub Users Search Engine"
+					)
 				),
-				React.createElement(UsersList, { users: this.state.users })
+				React.createElement(
+					"main",
+					null,
+					React.createElement(
+						"form",
+						{ onSubmit: function onSubmit(event) {
+								return _this3.onSubmit(event);
+							} },
+						React.createElement(
+							"label",
+							{ htmlFor: "searchText" },
+							"Search by user name"
+						),
+						React.createElement("input", {
+							type: "text",
+							id: "searchText",
+							onChange: function onChange(event) {
+								return _this3.onChangeHandle(event);
+							},
+							value: this.state.searchText })
+					),
+					React.createElement(UsersList, { users: this.state.users })
+				)
 			);
 		}
 	}]);
@@ -95,7 +115,7 @@ var UsersList = function (_React$Component2) {
 		value: function render() {
 			return React.createElement(
 				"div",
-				null,
+				{ className: 'usersBox' },
 				this.users
 			);
 		}
@@ -105,6 +125,7 @@ var UsersList = function (_React$Component2) {
 			return this.props.users.map(function (user) {
 				return React.createElement(User, { key: user.id, user: user });
 			});
+			console.log(this.users);
 		}
 	}]);
 
@@ -125,7 +146,7 @@ var User = function (_React$Component3) {
 		value: function render() {
 			return React.createElement(
 				"div",
-				null,
+				{ className: 'userBox' },
 				React.createElement("img", { src: this.props.user.avatar_url, style: { maxWidth: '100px' } }),
 				React.createElement(
 					"a",
