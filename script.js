@@ -1,5 +1,4 @@
 "use strict"
-
 //create App class
 
 class App extends React.Component{
