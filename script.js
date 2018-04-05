@@ -20,16 +20,15 @@ class App extends React.Component{
 	
 	onSubmit(event) {
 		event.preventDefault(); //prevents form sending 
-		const {searchText} = this.state;
-		console.log(this.state);
-		const url = `https://api.github.com/search/users?q=${searchText}`;
-		console.log(url);
 		
-	fetch(url)
+		const {searchText} = this.state;
+		const url = `https://api.github.com/search/users?q=${searchText}`;
+		
+		fetch(url)
 			.then(response => response.json())
-			
+				
 			.then(responseJson => {this.setState({users: responseJson.items}); console.log(this.state.users);});
-	}
+		}
 	
 	render() {
 		return (
@@ -59,8 +58,7 @@ class App extends React.Component{
 class UsersList extends React.Component{
 
 	get users() {
-    return this.props.users.map(user => <User key={user.id} user={user}/>);
-    console.log(this.users);
+	    return this.props.users.map(user => <User key={user.id} user={user}/>);
 	}
 	
 	render() {

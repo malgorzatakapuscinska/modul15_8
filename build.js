@@ -40,11 +40,10 @@ var App = function (_React$Component) {
 			var _this2 = this;
 
 			event.preventDefault(); //prevents form sending 
+
 			var searchText = this.state.searchText;
 
-			console.log(this.state);
 			var url = "https://api.github.com/search/users?q=" + searchText;
-			console.log(url);
 
 			fetch(url).then(function (response) {
 				return response.json();
@@ -124,7 +123,6 @@ var UsersList = function (_React$Component2) {
 			return this.props.users.map(function (user) {
 				return React.createElement(User, { key: user.id, user: user });
 			});
-			console.log(this.users);
 		}
 	}]);
 
